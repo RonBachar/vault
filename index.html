@@ -42,6 +42,8 @@
       }
       html {
         scroll-behavior: smooth;
+        overflow-x: hidden;
+        max-width: 100%;
       }
       @media (prefers-reduced-motion: reduce) {
         html {
@@ -55,6 +57,7 @@
         font-weight: 400;
         line-height: 1.7;
         overflow-x: hidden;
+        max-width: 100%;
         -webkit-font-smoothing: antialiased;
       }
       .container {
@@ -111,6 +114,7 @@
       section {
         padding: 140px 0;
         position: relative;
+        overflow-x: clip;
       }
       .section-head {
         margin-bottom: 80px;
@@ -222,8 +226,8 @@
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        width: min(900px, 120vw);
-        height: min(500px, 80vw);
+        width: min(900px, 100%);
+        height: min(500px, 70%);
         border-radius: 50%;
         border: 1px solid rgba(10, 10, 10, 0.05);
         box-shadow:
@@ -295,6 +299,12 @@
         grid-template-columns: 1.05fr 0.95fr;
         gap: clamp(40px, 5vw, 72px);
         align-items: center;
+      }
+      .hero-layout > * {
+        min-width: 0;
+      }
+      .hero-copy {
+        overflow-wrap: anywhere;
       }
       .hero-eyebrow {
         margin-bottom: clamp(20px, 3vw, 28px);
@@ -399,7 +409,9 @@
       .hero-visual {
         position: relative;
         max-width: min(560px, 100%);
+        width: 100%;
         margin-inline: auto;
+        overflow: hidden;
       }
       .hero-visual::before {
         content: "";
@@ -436,6 +448,7 @@
         letter-spacing: 0.12em;
         text-align: center;
         text-transform: uppercase;
+        overflow-wrap: anywhere;
       }
       .vault-svg {
         display: block;
@@ -836,7 +849,7 @@
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        width: min(800px, 100vw);
+        width: min(800px, 100%);
         height: 400px;
         background: radial-gradient(
           ellipse,
@@ -967,7 +980,7 @@
         }
         .hero-visual {
           order: -1;
-          max-width: 520px;
+          max-width: 100%;
         }
         .feat-grid--3 {
           grid-template-columns: 1fr;
@@ -983,6 +996,9 @@
         }
       }
       @media (max-width: 768px) {
+        .container {
+          padding: 0 16px;
+        }
         section {
           padding: 110px 0;
         }
@@ -991,6 +1007,26 @@
         }
         .feat-grid--2 {
           grid-template-columns: 1fr;
+        }
+        .hero-visual::before {
+          inset-inline-end: 0;
+          width: 52%;
+        }
+        .hero-list-text .en {
+          white-space: normal;
+        }
+        .hero-stage-caption {
+          font-size: 9px;
+          letter-spacing: 0.05em;
+        }
+        .motif-rings::after {
+          width: 92%;
+          box-shadow:
+            0 0 0 32px rgba(10, 10, 10, 0.025),
+            0 0 0 64px rgba(10, 10, 10, 0.015);
+        }
+        .btn {
+          max-width: 100%;
         }
       }
       @media (max-width: 375px) {
@@ -1023,37 +1059,35 @@
           <div class="hero-copy">
             <div class="eyebrow hero-eyebrow">// 01 / VAULT</div>
             <h1>
-              <span class="accent en">Vault</span>:
-              
-              שירות מנוהל מבית DnA IT להמשכיות עסקית והתאוששות מיידית מאסון בענן
+              <span class="accent en">Vault</span>: שירות מנוהל של
+              <span class="en">DnA IT</span> להתאוששות מאסון (<span class="en"
+                >DRaaS</span
+              >) בענן
             </h1>
             <p class="hero-sub">
-              פלטפורמת <span class="en">DRaaS</span> מנוהלת מקצה לקצה מבית
-              <span class="en">DnA IT</span>, המבוססת על ארכיטקטורת
-              <span class="en">Nutanix</span> המתקדמת. השירות מאפשר לארגון
-              להבטיח רציפות תפעולית מלאה והתאוששות מכל סוג של כשל לוגי או פיזי
-              בתוך דקות, ללא צורך בהקמה, תחזוקה או השקעת
-              <span class="en">CAPEX</span> באתר חירום פיזי משני.
+              פתרון מבוסס תשתית <span class="en">Nutanix</span> שמאפשר לארגון
+              לחזור לעבודה בתוך דקות מכל תקלה, בלי להקים ולתחזק אתר פיזי נוסף
+              ובלי צורך בהשקעה כספית גדולה מראש (<span class="en">CAPEX</span>).
             </p>
             <ul class="hero-list">
               <li>
                 <span class="hero-list-text"
-                  >הרחבה טבעית של הדאטה סנטר: שכפול וסנכרון של הסביבה הארגונית לענן ייעודי, המאפשר הקצאת משאבי מחשוב ואחסון באופן מיידי בעת אירוע.</span
+                  >הרחבת הדאטה סנטר לענן: סנכרון מלא של הסביבה שלכם, שמאפשר להעלות שרתים ומשאבים באופן מיידי בזמן אמת.</span
                 >
               </li>
               <li>
                 <span class="hero-list-text"
-                  >חסינות ברמת האחסון: הגנה היקפית על המידע המבוססת על ארכיטקטורת <span class="en">Snapshots</span> מוגנת כתיבה, המונעת שינויים זדוניים בזמן אמת.</span
+                  >הגנה מובנית באחסון: שמירה על המידע באמצעות <span class="en">Snapshots</span> מוגני כתיבה, המונעים שינויים או פגיעות זדוניות.</span
                 >
               </li>
               <li>
                 <span class="hero-list-text"
-                  >מודל צריכה תפעולי וגמיש: מעבר מלא ל-<span class="en">OPEX</span> מבוסס <span class="en">Pay-as-you-go</span>, ללא עלויות תשתית קבועות או מנופחות.</span
+                  >מודל תשלום גמיש: מעבר מלא להוצאה תפעולית (<span class="en">OPEX</span>) לפי שימוש בפועל (<span class="en">Pay-as-you-go</span>), ללא עלויות תשתית קבועות או מיותרות.</span
                 >
               </li>
             </ul>
             <a href="#cta" class="btn btn-primary"
-              >לתיאום פגישת אפיון והדגמה הנדסית</a
+              >לתיאום פגישת אפיון והדגמה טכנולוגית</a
             >
           </div>
           <div class="hero-visual">
@@ -1373,19 +1407,16 @@
         <div class="section-head">
           <div class="eyebrow">// 02 / MANAGED SERVICE</div>
           <h2>
-            העבירו את הנטל התפעולי של אתר החירום למומחים של
+            להעביר את הניהול והתחזוקה של אתר החירום לצוות של
             <span class="en">DnA IT</span>
           </h2>
           <p>
-            הקמה ותחזוקה של אתר <span class="en">DR</span> פיזי דורשות משאבים
-            עצומים, ניהול רישוי כפול ובדיקות כשירות מורכבות. שירות
-            <span class="en">Vault</span> מייתר את הצורך בתקורת הניהול הזו:
-            הארגון שלכם מגדיר את יעדי ה-<span class="en">RTO</span> וה-<span
-              class="en"
-              >RPO</span
-            >
-            הנדרשים, וצוות המהנדסים של <span class="en">DnA IT</span> מקים, מנטר
-            ומנהל עבורכם את מערך ההתאוששות המלא באופן פרואקטיבי.
+            להקים ולתחזק אתר <span class="en">DR</span> פיזי זה פרויקט מורכב
+            שדורש משאבים רבים, רישוי כפול ובדיקות כשירות מסורבלות. שירות
+            <span class="en">Vault</span> חוסך לכם את זה: אתם מגדירים את יעדי
+            ה-<span class="en">RTO</span> וה-<span class="en">RPO</span> הנדרשים,
+            וצוות המהנדסים של <span class="en">DnA IT</span> מקים, מנהל ומנטר
+            את מערך ההתאוששות המלא באופן קבוע.
           </p>
         </div>
         <div class="feat-grid feat-grid--3">
@@ -1403,9 +1434,10 @@
                 <path d="M3 9h18M9 21V9" />
               </svg>
             </div>
-            <h3>אפיון והתאמה ארכיטקטונית</h3>
+            <h3>אפיון והתאמה אישית</h3>
             <p>
-              הגדרה מדויקת של נפחי האחסון, מדיניות <span class="en">Retention</span> ותעדוף <span class="en">Mission-Critical Core</span> בהתאם לצרכים העסקיים של הארגון.
+              הגדרה מדויקת של נפחי האחסון, תקופת שמירת המידע ותעדוף המערכות
+              הקריטיות בהתאם לצרכים של העסק שלכם.
             </p>
           </div>
           <div class="feat-card reveal-card">
@@ -1422,9 +1454,13 @@
                 <path d="M12 7v5l3 2" />
               </svg>
             </div>
-            <h3>עמידה קשיחה ביעדי <span class="en">RTO &amp; RPO</span></h3>
+            <h3>עמידה ביעדי <span class="en">RTO &amp; RPO</span></h3>
             <p>
-              תכנון הנדסי קפדני המבטיח עמידה ביעדי <span class="en">RTO</span> ו-<span class="en">RPO</span>, על פי דרישות הרגולציה והסכמי ה-<span class="en">SLA</span> הארגוניים.
+              תכנון טכני קפדני שמבטיח חזרה מהירה לעבודה (<span class="en"
+                >RTO</span
+              >) ונקודות שחזור קרובות ככל הניתן לזמן האמת (<span class="en"
+                >RPO</span
+              >), בדיוק לפי דרישות הארגון.
             </p>
           </div>
           <div class="feat-card reveal-card">
@@ -1441,11 +1477,10 @@
                 <circle cx="12" cy="12" r="3" />
               </svg>
             </div>
-            <h3>ניהול וניטור פרואקטיבי מלא</h3>
+            <h3>ניהול וניטור מלא</h3>
             <p>
-              אחריות מלאה של <span class="en">DnA IT</span> על תקינות הרפליקציה,
-              עדכוני גרסאות, בדיקות עומסים תקופתיות וסימולציות התאוששות שוטפות
-              ללא הפרעה לייצור.
+              אנחנו לוקחים אחריות מלאה על תקינות הסנכרון, עדכוני גרסאות, בדיקות
+              עומסים תקופתיות וסימולציות שוטפות, בלי להפריע לעבודה.
             </p>
           </div>
         </div>
@@ -1457,10 +1492,7 @@
       <div class="container">
         <div class="section-head">
           <div class="eyebrow">// 03 / ADVANTAGES</div>
-          <h2>
-            יתירות מלאה וארכיטקטורת <span class="en">Enterprise</span>, ללא
-            העלויות של אתר פיזי משני
-          </h2>
+          <h2>כל היתרונות של אתר <span class="en">DR</span>, בלי העלויות הקבועות שלו</h2>
         </div>
         <div class="pillars">
           <div class="pillar reveal-card">
@@ -1478,10 +1510,10 @@
                 />
               </svg>
             </div>
-            <h3>ביטול הוצאות נדל"ן וכוח אדם</h3>
+            <h3>חיסכון בנדל"ן וכוח אדם</h3>
             <p>
-              חיסכון מוחלט בעלויות שכירות של דאטה סנטר משני, מיזוג, חשמל, אבטחה
-              פיזית וצוותי סיסטם ייעודיים לתחזוקת אתר החירום.
+              אין צורך לשכור מקום בדאטה סנטר נוסף, לשלם על חשמל ומיזוג או להחזיק
+              צוות ייעודי לתחזוקת אתר החירום.
             </p>
           </div>
           <div class="pillar reveal-card">
@@ -1498,13 +1530,10 @@
                 <path d="M6 10h.01M10 10h.01M14 10h.01M18 10h.01" />
               </svg>
             </div>
-            <h3>מניעת כפל תשתיות וחומרה</h3>
+            <h3>בלי כפל חומרה ורישוי</h3>
             <p>
-              פתרון תוכנתי מנוהל המבטל את הצורך ברכישת שרתים כפולים, רישוי
-              וירטואליזציה, מתגי תקשורת או חומות אש ייעודיות לאתר ה-<span
-                class="en"
-                >DR</span
-              >.
+              פתרון מנוהל שחוסך רכישת שרתים כפולים, רישיונות וירטואליזציה, מתגי
+              תקשורת או חומות אש לאתר הגיבוי.
             </p>
           </div>
           <div class="pillar reveal-card">
@@ -1524,10 +1553,10 @@
                 <path d="M4 20l4-4M20 4l-4 4" />
               </svg>
             </div>
-            <h3>מעבר מיידי לעבודה בענן</h3>
+            <h3>חזרה מהירה לעבודה בענן</h3>
             <p>
-              בזמן אירוע כשל, השרתים הארגוניים והאפליקציות עולים ישירות מתוך
-              סביבת הרפליקציה המוכנה בענן, ללא זמני פריסה ממושכים.
+              בזמן תקלה או כשל, המערכות והאפליקציות שלכם עולות ישירות מתוך סביבת
+              הענן המוכנה, ללא עיכובים.
             </p>
           </div>
           <div class="pillar reveal-card">
@@ -1544,9 +1573,10 @@
                 <path d="M12 6v6l4 2M22 2l-4 4" />
               </svg>
             </div>
-            <h3>יעילות כלכלית מבוססת צריכה</h3>
+            <h3>יעילות כלכלית לפי שימוש</h3>
             <p>
-              הקצאת <span class="en">Compute</span> והזיכרון מתבצעת באופן דינמי ומשולמת רק בזמן הפעלה בפועל או במהלך בדיקות כשירות מתוכננות.
+              הקצאת משאבי המחשוב והזיכרון מתבצעת בצורה דינמית ומשולמת רק בזמן
+              עבודה בפועל או במהלך בדיקות יזומות.
             </p>
           </div>
         </div>
@@ -1559,15 +1589,14 @@
         <div class="section-head">
           <div class="eyebrow">// 04 / INFRASTRUCTURE</div>
           <h2>
-            ארכיטקטורת <span class="en">All-Flash</span> מבוצרת והגנת
-            <span class="en">Snapshots</span> מתקדמת ברמת הבלוק
+            תשתית <span class="en">All-Flash</span> מהירה עם הגנת
+            <span class="en">Snapshots</span> ברמת הבלוק
           </h2>
           <p>
-            שירות <span class="en">Vault</span> נשען על תשתית מחשוב ואחסון
-            מודרנית במודל <span class="en">All-Flash</span>, המבטיחה ביצועים
-            גבוהים גם במצבי קצה. ההגנה על המידע מיושמת באמצעות טכנולוגיית
-            <span class="en">Snapshots</span> מובנית ומוגנת כתיבה ברמת התשתית,
-            המאפשרת שחזור מהיר ומדויק מכל אירוע של כשל לוגי, טעות אנוש או פגיעת
+            שירות <span class="en">Vault</span> רץ על תשתית מחשוב ואחסון מודרנית
+            <span class="en">All-Flash</span> שמבטיחה ביצועים גבוהים. הגנת המידע
+            מבוססת על טכנולוגיית <span class="en">Snapshots</span> מובנית ומוגנת
+            מפני כתיבה מחדש, שמאפשרת לשחזר מידע במהירות אחרי טעות אנוש או פגיעת
             קוד זדוני.
           </p>
         </div>
@@ -1585,14 +1614,10 @@
                 <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
               </svg>
             </div>
-            <h3>נזילות ביצועים ללא מגבלות נפח</h3>
+            <h3>בלי פגיעה בביצועים</h3>
             <p>
-              הרצה של תהליכי <span class="en">Snapshots</span> מרובים ללא הגבלת
-              כמות ועיצוב ארכיטקטוני המונע פגיעה או ירידה בביצועי ה-<span
-                class="en"
-                >I/O</span
-              >
-              של סביבת הייצור הארגונית.
+              הרצה של כמות גדולה של <span class="en">Snapshots</span> בלי להאט את
+              סביבת העבודה השוטפת שלכם בארגון.
             </p>
           </div>
           <div class="feat-card reveal-card">
@@ -1611,9 +1636,10 @@
                 <rect x="13" y="13" width="7" height="7" rx="1" />
               </svg>
             </div>
-            <h3>אוטונומיה מבנית מוחלטת</h3>
+            <h3>נקודות שמירה עצמאיות</h3>
             <p>
-              כל <span class="en">Snapshot</span> מנוהל כישות עצמאית לחלוטין, ללא תלות שרשרתית בגרסאות קודמות או מאוחרות, מה שמבטיח שחזור אמין ונקי.
+              כל <span class="en">Snapshot</span> מנוהל בנפרד, ללא תלות בגרסאות
+              קודמות או הבאות בתור, מה שמבטיח שחזור אמין ונקי.
             </p>
           </div>
           <div class="feat-card reveal-card">
@@ -1630,10 +1656,10 @@
                 <rect x="16" y="15" width="5" height="5" rx="1" />
               </svg>
             </div>
-            <h3>סנכרון גרנולרי ברמת הבלוק</h3>
+            <h3>סנכרון מהיר ברמת הבלוק</h3>
             <p>
-              תיעוד ושינוי הנתונים מבוצעים ברמת הבלוק בתוך שכבת האחסון התשתיתית,
-              תהליך הממקסם את נצילות רוחב הפס ומקצר את חלונות הסנכרון.
+              תיעוד ושינוי הנתונים מתבצעים ברמת הבלוק בתוך האחסון, מה שמקצר את
+              זמני הסנכרון וחוסך ברוחב הפס.
             </p>
           </div>
           <div class="feat-card reveal-card">
@@ -1651,9 +1677,10 @@
                 <path d="M8 16h8" />
               </svg>
             </div>
-            <h3>מנגנון שחזור ו-<span class="en">Mount</span> גמיש</h3>
+            <h3>שחזור גמיש ופשוט</h3>
             <p>
-              אפשרות ל-<span class="en">Mount</span> מהיר של נקודות זמן במצב <span class="en">Read-Only</span> לצורכי תחקור, או <span class="en">Read/Write</span> לשחזור מיידי לשרת המקור או לסביבה מבודדת בצד.
+              ניתן להעלות את נקודות הזמן לקריאה בלבד לצורכי בדיקה, או שחזור מלא
+              בלחיצת כפתור ישירות לשרת המקור או הצידה.
             </p>
           </div>
         </div>
@@ -1665,12 +1692,13 @@
             <div class="container">
               <div class="section-head">
                 <div class="eyebrow">// 06 / DRAAS</div>
-                <h2>חוסן ארגוני מלא במתקנים מבוצרים ומערך קישוריות מתוכנן מראש</h2>
+                <h2>תשתיות חזקות, מתקנים מאובטחים וקישוריות מוכנה מראש</h2>
                 <p>
-                  שירות <span class="en">Vault</span> פועל על גבי תשתיות מחשוב ואחסון
-                  עוצמתיות הממוקמות במתקני דאטה סנטר מאובטחים העומדים בתקני האבטחה
-                  המחמירים ביותר. כל היבטי התקשורת, כולל תכנון מראש של קווי הגיבוי,
-                  הנתבים וקישוריות <span class="en">VPN/Direct Connect</span> מאובטחת, מנוהלים ומנוטרים מסביב לשעון על ידי מוקד הבקרה של
+                  שירות <span class="en">Vault</span> פועל בתוך מתקני דאטה סנטר
+                  מאובטחים שעומדים בתקני האבטחה המחמירים ביותר. כל מערך התקשורת,
+                  כולל נתבים, קווי גיבוי וחיבורים מאובטחים (<span class="en"
+                    >VPN/Direct Connect</span
+                  >), מתוכנן מראש, מנוהל ומנוטר מסביב לשעון על ידי
                   <span class="en">DnA IT</span>.
                 </p>
               </div>
@@ -1690,12 +1718,11 @@
                     </svg>
                   </div>
                   <span class="stat-callout">$40B</span>
-                  <h3>המשכיות עסקית מול סיכוני השוק</h3>
+                  <h3>הגנה על העסק מפני השבתה</h3>
                   <p>
-                    מחקרי אנליסטים מעריכים את הנזק הכלכלי הגלובלי הנובע מהשבתות מערכות
-                    ואובדן נתונים בכ-40 מיליארד דולר בשנה. שירות
-                    <span class="en">Vault</span> נבנה כדי להוציא את הארגון שלכם
-                    מהסטטיסטיקה הזו ולהעניק לכם חסינות תפעולית.
+                    מחקרים מראים שהנזק הכלכלי העולמי מהשבתת מערכות ואובדן נתונים
+                    מגיע לכ-40 מיליארד דולר בשנה. <span class="en">Vault</span>
+                    נותן לכם את השקט כדי לא להיות חלק מהסטטיסטיקה הזו.
                   </p>
                 </div>
                 <div class="track-card reveal-card">
@@ -1714,11 +1741,11 @@
                       />
                     </svg>
                   </div>
-                  <h3>בדיקות כשירות תקופתיות ללא השבתה</h3>
+                  <h3>בדיקות תקינות ללא הפרעה</h3>
                   <p>
-                    ארכיטקטורת השירות מאפשרת לבצע סימולציות מלאות של נפילת אתר
-                    והתאוששות מאסון על יבש בסביבות מבודדות, כדי לוודא מוכנות מלאה בזמן
-                    אמת מבלי להפריע לפעילות העסקית השוטפת.
+                    הארכיטקטורה מאפשרת לעשות סימולציות מלאות של נפילת אתר על יבש
+                    בסביבה מבודדת, כדי לוודא מוכנות מלאה בלי להפריע לעבודה
+                    השוטפת.
                   </p>
                 </div>
               </div>
@@ -1732,20 +1759,17 @@
         <div class="section-head">
           <div class="eyebrow">// 05 / BUILT ON NUTANIX</div>
           <h2>
-            הרחבה טבעית של תשתית ה-<a href="../nutanix/" class="inline-link en"
+            הרחבה ישירה של תשתית ה-<a href="../nutanix/" class="inline-link en"
               >Nutanix</a
             >
-            הקיימת בארגון שלכם
+            שיש לכם בארגון
           </h2>
           <p>
-            אם הארגון שלכם כבר מבוסס על הארכיטקטורה המודרנית של
+            אם אתם כבר עובדים עם
             <a href="../nutanix/" class="inline-link en">Nutanix</a>, שירות
-            <span class="en">Vault</span> מהווה המשך טבעי וישיר של דאטה סנטר
-            הארגוני אל תוך הענן המנוהל של <span class="en">DnA IT</span>. השירות
-            משתלב בצורה שקופה לחלוטין בכלי הניהול המוכרים לכם, מבלי שתצטרכו
-            לשנות את שיטות העבודה או להכשיר את צוותי ה-<span class="en"
-              >IT</span
-            >
+            <span class="en">Vault</span> הוא המשך טבעי של הדאטה סנטר שלכם אל תוך
+            הענן של <span class="en">DnA IT</span>. הכל מתחבר בצורה חלקה לכלי
+            הניהול שאתם כבר מכירים, בלי לשנות הרגלים ובלי צורך להכשיר את הצוות
             לטכנולוגיות חדשות.
           </p>
         </div>
@@ -1765,10 +1789,10 @@
                 <path d="M11 12h2" />
               </svg>
             </div>
-            <h3>הפרדת סביבות <span class="en">Multi-Tenancy</span> קשיחה</h3>
+            <h3>הפרדה מוחלטת ומאובטחת (<span class="en">Multi-Tenancy</span>)</h3>
             <p>
-              ארכיטקטורת ענן מבודדת המבטיחה הפרדה לוגית והרמטית מוחלטת בין משאבי
-              המידע, הרישוי והתקשורת של הארגון שלכם לבין לקוחות אחרים במתחם.
+              ארכיטקטורת ענן מבודדת שמבטיחה הפרדה מלאה של המידע, הרישוי והתקשורת
+              שלכם מלקוחות אחרים במתחם.
             </p>
           </div>
           <div class="feat-card reveal-card">
@@ -1784,9 +1808,11 @@
                 <path d="M12 2l3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1z" />
               </svg>
             </div>
-            <h3>ניהול אחוד תחת קורת גג אחת</h3>
+            <h3>ניהול בממשק אחד מוכר</h3>
             <p>
-              ניצול מלא של כלי הניהול הקיימים, כגון <span class="en">Nutanix Prism</span>, לשליטה, מעקב וניהול מדיניות הרפליקציה בצורה חלקה ויציבה.
+              שימוש מלא בכלי הניהול הקיימים שלכם (כמו
+              <span class="en">Nutanix Prism</span>) כדי לעקוב ולשלוט במדיניות
+              הסנכרון בקלות ובנוחות.
             </p>
           </div>
         </div>
@@ -1799,24 +1825,22 @@
       <div class="container">
         <div class="final-inner">
           <div class="eyebrow">// 07 / NEXT STEP</div>
-          <h2>יציבות תפעולית מתחילה בארכיטקטורת התאוששות מוכחת</h2>
+          <h2>שקט נפשי מגיע מתוכנית התאוששות שבאמת עובדת</h2>
           <p class="final-lead">
-            שירות <span class="en">Vault</span> מבית
-            <span class="en">DnA IT</span> מעניק לארגון שלכם פתרון התאוששות
-            מהיר, חסינות נתונים מוחלטת ושירות מנוהל
-            <span class="en">24/7/365</span> על ידי המומחים המובילים בתחום
-            התשתיות, ללא השקעה בחומרה פיזית וללא סיכונים מיותרים.
+            שירות <span class="en">Vault</span> של
+            <span class="en">DnA IT</span> נותן לכם חזרה מהירה לעבודה, הגנה חזקה
+            על המידע ושירות מנוהל מלא <span class="en">24/7</span> על ידי אנשי
+            מקצוע, בלי להשקיע בחומרה יקרה ובלי לקחת סיכונים מיותרים.
           </p>
           <p class="sub">
-            רוצים לבחון כיצד פתרון ה-<span class="en">DRaaS</span> המנוהל משתלב
-            בסביבה הארגונית שלכם?
+            רוצים לבדוק כיצד פתרון ה-<span class="en">DRaaS</span> המנוהל משתלב
+            בסביבה שלכם?
           </p>
           <p class="desc">
-            צוות מהנדסי התשתיות והסייבר של <span class="en">DnA IT</span> ילווה
-            אתכם החל משלב אפיון השרתים והמערכות הקריטיות, דרך הגדרת קווי התקשורת
-            והרפליקציה, ועד לניהול שוטף ותמיכה מלאה
-            <span class="en">24/7/365</span>. נתחיל בפגישת אפיון הנדסית קצרה
-            וממוקדת.
+            צוות המהנדסים של <span class="en">DnA IT</span> ילווה אתכם מהשלב
+            הראשון: אפיון השרתים והמערכות הקריטיות, הגדרת קווי התקשורת והסנכרון,
+            ועד לניהול שוטף ותמיכה מלאה
+            <span class="en">24/7/365</span>. נתחיל בפגישת אפיון קצרה וממוקדת.
           </p>
           <div class="final-ctas">
             <a href="#" class="btn btn-primary"
